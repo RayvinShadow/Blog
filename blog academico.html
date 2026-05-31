@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog académico - Unidad 2</title>
+  <style>
+    :root {
+      --bg: #fbfbfb;
+      --bg-alt: #f6f7f9;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #475569;
+      --primary: #0ea5a4; /* teal accent */
+      --primary-dark: #064e4a;
+      --accent: #0ea5a4;
+      --accent-soft: rgba(14, 165, 164, 0.08);
+      --secondary: #64748b;
+      --line: rgba(15, 23, 42, 0.06);
+      --soft: rgba(15, 23, 42, 0.04);
+      --shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+      --radius: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      color: var(--text);
+      background: linear-gradient(180deg, var(--bg) 0%, var(--bg-alt) 100%);
+      line-height: 1.7;
+      min-height: 100vh;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .container {
+      width: min(1160px, calc(100% - 28px));
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 30px 0 18px;
+    }
+
+    .hero {
+      background: linear-gradient(90deg, #ffffff, #fbfdff);
+      color: var(--text);
+      border-radius: 12px;
+      padding: 36px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+      border: 1px solid var(--line);
+    }
+
+    .hero::before,
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      border: 1px solid rgba(14, 165, 164, 0.12);
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-bottom: 12px;
+      color: var(--primary-dark);
+    }
+
+    .hero::after {
+      margin: 0;
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.06;
+      letter-spacing: -0.5px;
+      max-width: 920px;
+      color: var(--text);
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      font-weight: 700;
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent-soft);
+      color: var(--primary-dark);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      margin-top: 14px;
+      border: 1px solid rgba(14,165,164,0.12);
+      width: fit-content;
+
+    h1 {
+      margin: 0;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(6px);
+      background: rgba(255,255,255,0.96);
+      border-bottom: 1px solid var(--line);
+
+    .subtitle {
+      max-width: 920px;
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 8px;
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--text);
+      font-weight: 700;
+      transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease;
+      white-space: nowrap;
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+      padding: 10px 16px;
+      transform: translateY(-1px);
+      background: var(--accent-soft);
+      color: var(--primary-dark);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      width: fit-content;
+    }
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+      margin-bottom: 24px;
+      background: rgba(11, 19, 32, 0.92);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+    }
+
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.04);
+      padding: 12px 0;
+      flex-wrap: wrap;
+    }
+      margin: 0 0 10px;
+      font-size: 1.15rem;
+      color: var(--primary-dark);
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--primary);
+      color: white;
+      border-radius: 999px;
+      padding: 10px 16px;
+      font-weight: 800;
+      width: fit-content;
+      box-shadow: 0 8px 20px rgba(14,165,164,0.08);
+      text-decoration: none;
+    }
+
+    main {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border-radius: 8px;
+      background: #f3f6f8;
+      border: 1px solid var(--line);
+      height: 100%;
+      min-height: 180px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+
+    .section-top {
+      filter: none;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: flex-start;
+      margin-bottom: 18px;
+    }
+
+    .section-top h2 {
+      margin: 0 0 6px;
+      font-size: clamp(1.4rem, 3vw, 2.1rem);
+      line-height: 1.15;
+      color: var(--text);
+    }
+
+    .description {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .num {
+      flex: 0 0 auto;
+      width: 46px;
+      height: 46px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: 1.05rem;
+    }
+
+    .grid-two {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 18px;
+    }
+
+    .panel,
+    .image-box {
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.18);
+    }
+
+    .panel {
+      padding: 18px;
+    }
+
+    .panel h3 {
+      margin: 0 0 10px;
+      font-size: 1.15rem;
+      color: var(--accent);
+    }
+
+    .meta-list {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .meta-list li+li {
+      margin-top: 8px;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 16px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 800;
+      border: 1px solid transparent;
+      transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn.primary {
+      background: var(--accent);
+      color: var(--primary-dark);
+      border-color: transparent;
+      box-shadow: 0 18px 36px rgba(251, 191, 36, 0.14);
+    }
+
+    .btn.primary:hover {
+      background: #fbbf24;
+    }
+
+    .btn.secondary {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.08);
+      color: var(--text);
+    }
+
+    .btn.secondary:hover {
+      background: #f7f9fd;
+    }
+
+    .video-frame {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border-radius: 22px;
+      background: #111827;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .video-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: saturate(1.02);
+    }
+
+    .video-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 18px;
+      background: linear-gradient(180deg, rgba(8, 15, 30, 0.12), rgba(8, 15, 30, 0.96));
+      color: white;
+    }
+
+    .video-overlay .small {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: fit-content;
+      margin-bottom: 10px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      font-weight: 700;
+    }
+
+    .video-overlay h3 {
+      margin: 0 0 8px;
+      font-size: clamp(1.2rem, 2.4vw, 1.85rem);
+      line-height: 1.1;
+    }
+
+    .video-overlay p {
+      margin: 0 0 14px;
+      color: rgba(255, 255, 255, 0.92);
+      max-width: 560px;
+    }
+
+    .play-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #2563eb;
+      color: white;
+      border-radius: 999px;
+      padding: 10px 16px;
+      font-weight: 800;
+      width: fit-content;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.16);
+      text-decoration: none;
+    }
+
+    .play {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.22);
+      display: grid;
+      place-items: center;
+    }
+
+    .triangle {
+      width: 0;
+      height: 0;
+      border-top: 7px solid transparent;
+      border-bottom: 7px solid transparent;
+      border-left: 11px solid white;
+      margin-left: 2px;
+    }
+
+    .image-box img {
+      width: 100%;
+      display: block;
+      height: auto;
+    }
+
+    .image-caption {
+      padding: 14px 16px 16px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .note {
+      background: var(--accent-soft);
+      border: 1px solid rgba(251, 191, 36, 0.22);
+      border-radius: 20px;
+      padding: 16px 18px;
+      color: var(--text);
+    }
+
+    .note strong {
+      color: var(--primary-dark);
+    }
+
+    .reference-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .ref-card {
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .ref-card .ref-head {
+      padding: 14px 16px 0;
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    .ref-card .ref-body {
+      padding: 10px 16px 16px;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .info-chip {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 18px;
+      padding: 14px 16px;
+    }
+
+    .info-chip .label {
+      display: block;
+      font-size: 0.86rem;
+      color: var(--muted);
+      margin-bottom: 4px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+
+    .info-chip .value {
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    footer {
+      padding: 20px 0 40px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 860px) {
+
+      .grid-two,
+      .reference-grid,
+      .team-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-top {
+        flex-direction: row;
+      }
+
+      .hero {
+        padding: 24px;
+      }
+
+      section.card {
+        padding: 18px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav-inner {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 14px;
+      }
+
+      .nav-link {
+        flex: 0 0 auto;
+      }
+
+      .container {
+        width: min(100% - 20px, 1160px);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <div class="hero">
+        <div class="badge">📝 Blog académico · Unidad 2</div>
+        <h1>Influencia de las Redes Sociales en los Jóvenes</h1>
+        <p class="subtitle">
+          Blog académico con los productos desarrollados en la Unidad 2: elevator pitch, infografía grupal, panel de
+          discusión y reportaje sobre un tema controversial.
+        </p>
+       
+      </div>
+    </div>
+  </header>
+
+  <nav aria-label="Navegación principal">
+    <div class="nav-inner">
+      <a class="nav-link" href="#elevator-pitch">Elevator Pitch</a>
+      <a class="nav-link" href="#infografia">Infografía</a>
+      <a class="nav-link" href="#panel">Panel de Discusión</a>
+      <a class="nav-link" href="#reportaje">Reportaje</a>
+    </div>
+  </nav>
+
+  <main>
+    <div class="container">
+
+      <section class="card" id="elevator-pitch">
+        <div class="section-top">
+          <div>
+            <h2>1. Sínopsis y video del “elevator pitch”</h2>
+            <p class="description">Presentación breve del tema abordado por el equipo mediante la técnica del elevator
+              pitch.</p>
+          </div>
+          <div class="num">1</div>
+        </div>
+
+        <div class="grid-two">
+          <div class="panel">
+            <h3>Sínopsis</h3>
+            <p class="description" style="color: var(--text);">
+              El video presenta de forma clara y concisa la problemática relacionada con la influencia de las redes
+              sociales en los jóvenes, destacando sus principales efectos y la importancia de promover un uso
+              responsable de las plataformas digitales.
+            </p>
+
+            <div class="cta-row">
+              <a class="btn primary" href="https://youtu.be/sXpHfBc1CM8?feature=shared" target="_blank"
+                rel="noopener">Abrir video del elevator pitch</a>
+            </div>
+
+            <div class="note" style="margin-top:16px;">
+              Enlace: https://youtu.be/sXpHfBc1CM8?feature=shared
+            </div>
+          </div>
+
+          <div class="video-frame">
+            <img src="https://i.ytimg.com/vi/sXpHfBc1CM8/hqdefault.jpg" alt="Miniatura del video del elevator pitch"
+              onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/sXpHfBc1CM8/mqdefault.jpg';" />
+            <div class="video-overlay">
+              <div class="small">▶ Video de referencia</div>
+              <h3>Elevator pitch</h3>
+              <p>Haz clic en el botón para abrir el video en YouTube.</p>
+              <a class="play-pill" href="https://youtu.be/sXpHfBc1CM8?feature=shared" target="_blank" rel="noopener">
+                <span class="play"><span class="triangle"></span></span>
+                Ver video
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" id="infografia">
+        <div class="section-top">
+          <div>
+            <h2>2. Descripción de la infografía grupal</h2>
+            <p class="description">Infografía elaborada para analizar el impacto de las redes sociales en los jóvenes.
+            </p>
+          </div>
+          <div class="num">2</div>
+        </div>
+
+        <div class="grid-two">
+          <img src="infografia.png" alt="Infografía grupal" style="width:100%; height:auto; border-radius:15px;">
+
+          <div class="panel">
+            <h3>Descripción</h3>
+            <p class="description" style="color: var(--text);">
+              La infografía analiza la influencia de las redes sociales en los jóvenes, presentando aspectos positivos,
+              riesgos, impacto en la salud mental y recomendaciones para un uso responsable.
+            </p>
+
+            <ul class="meta-list">
+              <li><strong>Tema:</strong> influencia de las redes sociales en los jóvenes.</li>
+              <li><strong>Propósito:</strong> informar y promover el uso responsable.</li>
+              <li><strong>Recursos visuales:</strong> íconos, bloques comparativos y mensajes breves.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" id="panel">
+        <div class="section-top">
+          <div>
+            <h2>3. Semblanza del panel de discusión</h2>
+            <p class="description">Enlace del panel y una imagen de referencia para el blog.</p>
+          </div>
+          <div class="num">3</div>
+        </div>
+
+        <div class="grid-two">
+          <div class="panel">
+            <h3>Semblanza</h3>
+            <p class="description" style="color: var(--text);">
+              El panel de discusión permitió contrastar diferentes perspectivas respecto a la influencia de las redes
+              sociales en la vida de los jóvenes. A través del intercambio de argumentos y opiniones fundamentadas, se
+              promovió la reflexión crítica sobre los beneficios y desafíos que estas plataformas representan en la
+              actualidad.
+            </p>
+
+            <div class="cta-row">
+              <a class="btn primary" href="https://youtu.be/sXpHfBc1CM8?feature=shared" target="_blank"
+                rel="noopener">Abrir panel de discusión</a>
+            </div>
+
+            <div class="note" style="margin-top:16px;">
+              Enlace del panel: https://youtu.be/sXpHfBc1CM8?feature=shared
+            </div>
+          </div>
+
+          <div class="image-box">
+            <div class="video-frame">
+              <img src="https://i.ytimg.com/vi/sXpHfBc1CM8/hqdefault.jpg" alt="Miniatura del panel de discusión"
+                onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/sXpHfBc1CM8/mqdefault.jpg';" />
+              <div class="video-overlay">
+                <div class="small">▶ Panel de discusión</div>
+                <h3>Panel de discusión</h3>
+                <p>Haz clic para abrir el panel en YouTube.</p>
+                <a class="play-pill" href="https://youtu.be/sXpHfBc1CM8?feature=shared" target="_blank" rel="noopener">
+                  <span class="play"><span class="triangle"></span></span>
+                  Ver panel
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" id="reportaje">
+        <div class="section-top">
+          <div>
+            <h2>4. Reportaje sobre tema controversial</h2>
+            <p class="description">Video de entrevistas y resumen del reportaje elaborado por el equipo.</p>
+          </div>
+          <div class="num">4</div>
+        </div>
+
+        <div class="grid-two">
+          <div class="video-frame">
+            <img src="https://i.ytimg.com/vi/eL4Ck0ARXzA/hqdefault.jpg" alt="Miniatura del video de entrevistas"
+              onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/eL4Ck0ARXzA/mqdefault.jpg';" />
+            <div class="video-overlay">
+              <div class="small">▶ Video de entrevistas</div>
+              <h3>Reportaje sobre tema controversial</h3>
+              <p>Entrevistas realizadas por el equipo para sustentar el análisis.</p>
+              <a class="play-pill" href="https://www.youtube.com/watch?v=eL4Ck0ARXzA" target="_blank" rel="noopener">
+                <span class="play"><span class="triangle"></span></span>
+                Ver entrevistas
+              </a>
+            </div>
+          </div>
+
+          <div class="panel">
+            <h3>Resumen del reportaje</h3>
+            <p class="description" style="color: var(--text);">
+              El reportaje recoge opiniones y experiencias obtenidas mediante entrevistas realizadas por el equipo. Los
+              testimonios permiten identificar distintas percepciones sobre el impacto de las redes sociales,
+              evidenciando tanto oportunidades de aprendizaje y comunicación como riesgos relacionados con la salud
+              mental y el uso excesivo de la tecnología.
+            </p>
+
+            <ul class="meta-list">
+              <li><strong>Enlace del video:</strong> https://www.youtube.com/watch?v=eL4Ck0ARXzA</li>
+              <li><strong>Enfoque:</strong> entrevistas elaboradas por el grupo.</li>
+              <li><strong>Objetivo:</strong> presentar un análisis claro y sustentado.</li>
+            </ul>
+
+            <div class="note" style="margin-top:16px;">
+              Conclusión: el uso responsable de las redes sociales es clave para aprovechar sus beneficios sin afectar
+              el bienestar personal.
+            </div>
+          </div>
+        </div>
+
+        <div class="reference-grid">
+          <div class="ref-card">
+            <div class="ref-head">Observación final</div>
+            <div class="ref-body">
+              Cada sección puede ampliarse con más imágenes, capturas o recursos interactivos según lo solicitado en
+              clase.
+            </div>
+          </div>
+          <div class="ref-card">
+            <div class="ref-head">Presentación</div>
+            <div class="ref-body">
+              Revisa que los enlaces funcionen y que las imágenes se visualicen correctamente antes de entregar el blog.
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer>
+    Blog académico elaborado para la Evaluación de Sesión 08 – Unidad 2.
+  </footer>
+</body>
+
+</html>
