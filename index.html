@@ -312,6 +312,108 @@
       background: #f7f9fd;
     }
 
+    /* Interactividad mejorada */
+    .card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(14, 165, 164, 0.12);
+      border-color: var(--accent);
+    }
+
+    .panel {
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .panel:hover {
+      transform: scale(1.01);
+      background: linear-gradient(135deg, #ffffff 0%, #f0fffe 100%);
+    }
+
+    .btn {
+      box-shadow: 0 4px 12px rgba(14, 165, 164, 0.15);
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .btn:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 12px 28px rgba(14, 165, 164, 0.25);
+    }
+
+    .video-frame {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .video-frame:hover {
+      transform: scale(1.02);
+      box-shadow: 0 12px 32px rgba(14, 165, 164, 0.2);
+    }
+
+    .nav-link {
+      transition: all 0.3s ease;
+    }
+
+    .nav-link:active {
+      background: var(--primary-dark);
+      color: white;
+    }
+
+    section.card {
+      animation: slideInUp 0.6s ease-out;
+    }
+
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Estilos para elementos interactivos adicionales */
+    .info-chip {
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .info-chip::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .info-chip:hover::before {
+      left: 100%;
+    }
+
+    .info-chip:hover {
+      transform: translateY(-6px) scale(1.03);
+      box-shadow: 0 12px 24px rgba(14, 165, 164, 0.2);
+      border-color: var(--accent) !important;
+    }
+
+    [style*="border-left: 4px solid"] {
+      transition: all 0.3s ease;
+    }
+
+    [style*="border-left: 4px solid"]:hover {
+      transform: translateX(4px);
+      box-shadow: 0 8px 20px rgba(14, 165, 164, 0.15);
+    }
+
     .video-frame {
       position: relative;
       aspect-ratio: 16 / 9;
@@ -544,7 +646,8 @@
       <a class="nav-link" href="#elevator-pitch">Elevator Pitch</a>
       <a class="nav-link" href="#infografia">Infografía</a>
       <a class="nav-link" href="#panel">Panel de Discusión</a>
-      <a class="nav-link" href="#reportaje">Reportaje</a>
+      <a class="nav-link" href="#reportaje">Entrevista</a>
+      <a class="nav-link" href="#reportaje-nuevo">Reportaje</a>
     </div>
   </nav>
 
@@ -579,11 +682,35 @@
               <li><strong>Intereses:</strong> salud, cuidado del paciente, uso responsable de tecnologías, trabajo
                 colaborativo e investigación.</li>
             </ul>
+            <div class="note" style="margin-top: 16px;">
+                <strong>Video adicional:</strong> <a href="https://youtu.be/upcxEq7XN24?feature=shared" target="_blank" rel="noopener">Ver presentación del equipo</a>
+              </div>
           </div>
+            <div>
+              <div class="image-box">
+                <div class="video-frame">
+                  <iframe src="https://drive.google.com/file/d/1t_2sJaa1rfllxa9hxKABX4sILNGJHY0D/preview" width="100%" height="600px"></iframe>
+                </div>
+              </div>
 
-          <div class="video-frame">
-            <iframe src="https://drive.google.com/file/d/1t_2sJaa1rfllxa9hxKABX4sILNGJHY0D/preview" width="100%" height="600px" ></iframe>
-          </div>
+              <div class="image-box" style="margin-top: 18px;">
+                <div class="video-frame">
+                  <img src="https://img.youtube.com/vi/upcxEq7XN24/hqdefault.jpg" alt="Vista previa del video de presentación del equipo"
+                    onerror="this.onerror=null;this.src='https://img.youtube.com/vi/upcxEq7XN24/mqdefault.jpg';" />
+                  <div class="video-overlay">
+                    <div class="small">Video de presentación</div>
+                    <h3>Presentación del equipo</h3>
+                    <p>Haz clic para ver el video de presentación del equipo en YouTube.</p>
+                    <a class="play-pill" href="https://youtu.be/upcxEq7XN24?feature=shared" target="_blank" rel="noopener">
+                      <span class="play"><span class="triangle"></span></span>
+                      Ver presentación
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              
+            </div>
         </div>
       </section>
 
@@ -650,17 +777,24 @@
             alt="Infografí­a grupal" style="width:100%; height:auto; border-radius:15px;">
 
           <div class="panel">
-            <h3>Descripción</h3>
+            <h3>Descripción y análisis</h3>
             <p class="description" style="color: var(--text);">
-              La infografía analiza la influencia de las redes sociales en los jóvenes, presentando aspectos positivos,
-              riesgos, impacto en la salud mental y recomendaciones para un uso responsable.
+              La infografía fue elaborada de manera colaborativa por el equipo de enfermería para presentar un análisis visual y comprensible del impacto de las redes sociales en los jóvenes. El diseño combina elementos visuales, iconografía moderna y datos relevantes para facilitar la comprensión del tema.
+            </p>
+            <p class="description" style="color: var(--text); margin-top: 10px;">
+              La infografía analiza diferentes aspectos clave: los beneficios que ofrecen estas plataformas como herramientas de conexión social, educación y desarrollo profesional, así como los riesgos asociados incluyendo adicción, problemas de autoestima, ciberacoso y trastornos del sueño. También proporciona recomendaciones prácticas para promover el uso responsable de redes sociales.
             </p>
 
-            <ul class="meta-list">
-              <li><strong>Tema:</strong> influencia de las redes sociales en los jóvenes.</li>
-              <li><strong>Propósito:</strong> informar y promover el uso responsable.</li>
-              <li><strong>Recursos visuales:</strong> I­conos, bloques comparativos y mensajes breves.</li>
+            <ul class="meta-list" style="margin-top: 14px;">
+              <li><strong>Tema:</strong> Influencia de las redes sociales en los jóvenes.</li>
+              <li><strong>Aspectos cubiertos:</strong> Beneficios, riesgos, impacto en salud mental.</li>
+              <li><strong>Propósito:</strong> Informar y promover el uso responsable.</li>
+              <li><strong>Recursos visuales:</strong> Iconos, gráficos comparativos y mensajes clave.</li>
             </ul>
+
+            <div class="note" style="margin-top: 16px;">
+              <strong>Importancia:</strong> Las infografías son herramientas poderosas para comunicar información compleja de manera accesible, permitiendo que la audiencia comprenda rápidamente los puntos clave sobre el impacto de las redes sociales.
+            </div>
           </div>
         </div>
       </section>
@@ -669,7 +803,7 @@
         <div class="section-top">
           <div>
             <h2>4. Semblanza del panel de discusión</h2>
-            <p class="description">Enlace del panel y una imagen de referencia para el blog.</p>
+            <p class="description">Enlace del panel y análisis detallado de los temas tratados.</p>
           </div>
           <div class="num">4</div>
         </div>
@@ -683,40 +817,50 @@
               promovió la reflexión crítica sobre los beneficios y desafíos que estas plataformas representan en la
               actualidad.
             </p>
+            <p class="description" style="color: var(--text); margin-top: 12px;">
+              En este espacio participaron estudiantes de enfermería que compartieron sus experiencias personales, investigaciones previas y puntos de vista fundamentados. Los temas abordados incluyeron la adicción digital, el impacto en la autoestima, los efectos en el sueño, y las oportunidades que ofrecen estas plataformas para la educación y la salud. Las conclusiones demuestran la importancia de establecer límites saludables en el uso de redes sociales.
+            </p>
 
             <div class="cta-row">
-              <a class="btn primary" href="https://youtu.be/sXpHfBc1CM8?feature=shared" target="_blank"
+              <a class="btn primary" href="https://youtu.be/2fJs9wKMTw8" target="_blank"
                 rel="noopener">Abrir panel de discusión</a>
             </div>
 
             <div class="note" style="margin-top:16px;">
-              Enlace del panel: https://youtu.be/sXpHfBc1CM8?feature=shared
+              Enlace del panel: https://youtu.be/2fJs9wKMTw8
             </div>
           </div>
 
           <div class="image-box">
             <div class="video-frame">
-              <img src="https://i.ytimg.com/vi/sXpHfBc1CM8/hqdefault.jpg" alt="Miniatura del panel de discusión"
-                onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/sXpHfBc1CM8/mqdefault.jpg';" />
+              <img src="https://i.ytimg.com/vi/2fJs9wKMTw8/hqdefault.jpg" alt="Miniatura del panel de discusión"
+                onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/2fJs9wKMTw8/mqdefault.jpg';" />
               <div class="video-overlay">
                 <div class="small">Panel de discusión</div>
                 <h3>Panel de discusión</h3>
-                <p>Haz clic para abrir el panel en YouTube.</p>
-                <a class="play-pill" href="https://youtu.be/sXpHfBc1CM8?feature=shared" target="_blank" rel="noopener">
+                <p>Perspectivas múltiples sobre redes sociales y salud mental.</p>
+                <a class="play-pill" href="https://youtu.be/2fJs9wKMTw8" target="_blank" rel="noopener">
                   <span class="play"><span class="triangle"></span></span>
                   Ver panel
                 </a>
               </div>
             </div>
+            <div style="margin-top: 20px; background: linear-gradient(135deg, rgba(14, 165, 164, 0.08), rgba(14, 165, 164, 0.04)); padding: 18px; border-radius: 16px; border-left: 4px solid var(--accent);">
+            <h4 style="margin: 0 0 10px 0; color: var(--primary-dark); font-size: 1rem;">¿Qué puedes llevarte?</h4>
+            <p style="margin: 0; color: var(--text); font-size: 0.95rem; line-height: 1.6;">
+              El panel dio ejemplos de cómo usar redes para aprender y para conectarse, pero también mostró la importancia de pausar y priorizar otras actividades. Si algo te llamó la atención, prueba un cambio pequeño: menos notificaciones y más tiempo de estudio concentrado.
+            </p>
+          </div>
           </div>
         </div>
-      </section>
+
+         </section>
 
       <section class="card" id="reportaje">
         <div class="section-top">
           <div>
-            <h2>5. Reportaje sobre tema controversial</h2>
-            <p class="description">Video de entrevistas y resumen del reportaje elaborado por el equipo.</p>
+            <h2>5. Entrevista - Perspectivas sobre redes sociales</h2>
+            <p class="description">Video de entrevistas realizadas por el equipo y análisis de testimonios.</p>
           </div>
           <div class="num">5</div>
         </div>
@@ -727,8 +871,8 @@
               onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/eL4Ck0ARXzA/mqdefault.jpg';" />
             <div class="video-overlay">
               <div class="small">Video de entrevistas</div>
-              <h3>Reportaje sobre tema controversial</h3>
-              <p>Entrevistas realizadas por el equipo para sustentar el análisis.</p>
+              <h3>Entrevista - Perspectivas sobre redes sociales</h3>
+              <p>Testimonios auténticos de estudiantes y profesionales sobre el impacto de las redes sociales.</p>
               <a class="play-pill" href="https://www.youtube.com/watch?v=eL4Ck0ARXzA" target="_blank" rel="noopener">
                 <span class="play"><span class="triangle"></span></span>
                 Ver entrevistas
@@ -736,29 +880,102 @@
             </div>
           </div>
 
-          <div class="panel">
-            <h3>Resumen del reportaje</h3>
+          <div class="panel" style="margin-top: 16px;">
+            <h3>Qué ver en este video</h3>
             <p class="description" style="color: var(--text);">
-              El reportaje recoge opiniones y experiencias obtenidas mediante entrevistas realizadas por el equipo. Los
-              testimonios permiten identificar distintas percepciones sobre el impacto de las redes sociales,
-              evidenciando tanto oportunidades de aprendizaje y comunicación como riesgos relacionados con la salud
-              mental y el uso excesivo de la tecnología.
+              El video muestra lo que piensan estudiantes y especialistas sobre el uso de redes en la vida universitaria. Fíjate en las recomendaciones que hacen para equilibrar el tiempo en línea y las tareas del día a día.
+            </p>
+            <ul class="meta-list">
+              <li><strong>Voces reales:</strong> estudiantes y profesionales comparten su experiencia.</li>
+              <li><strong>Puntos clave:</strong> colocar límites, usar redes con propósito y cuidar la salud mental.</li>
+            </ul>
+            <div class="note" style="margin-top: 12px;">
+              Cuando termines el video, piensa qué cambio pequeño podrías aplicar en tu propio uso de redes sociales.
+            </div>
+          </div>
+
+          
+        </div>
+      </section>
+
+      <section class="card" id="reportaje-nuevo">
+        <div class="section-top">
+          <div>
+            <h2>6. Reportaje - Universitarios y redes sociales</h2>
+            <p class="description">Análisis profundo sobre el éxito y la adicción digital en jóvenes universitarios.</p>
+          </div>
+          <div class="num">6</div>
+        </div>
+
+        <div class="grid-two">
+          <div class="panel">
+            <h3>La verdad sobre los universitarios y las redes sociales: ¿Éxito o adicción?</h3>
+            <p class="description" style="color: var(--text);">
+              Este reportaje muestra cómo muchos universitarios usan redes sociales para aprender, conectarse y compartir sus intereses. El equipo recoge ejemplos reales y opiniones que ayudan a entender cuándo estas plataformas suman y cuándo se vuelven una distracción.
+            </p>
+            <p class="description" style="color: var(--text); margin-top: 10px;">
+              También destaca los riesgos de usar redes sin medida: pérdida de tiempo de estudio, estrés, comparación constante y cansancio mental. El contenido ofrece ideas concretas para encontrar un equilibrio entre lo que se gana y lo que se deja de lado.
             </p>
 
-            <ul class="meta-list">
-              <li><strong>Enlace del video:</strong> https://www.youtube.com/watch?v=eL4Ck0ARXzA</li>
-              <li><strong>Enfoque:</strong> entrevistas elaboradas por el grupo.</li>
-              <li><strong>Objetivo:</strong> presentar un análisis claro y sustentado.</li>
+            <div class="cta-row">
+              <a class="btn primary" href="https://youtu.be/0s-UodvY6yw" target="_blank"
+                rel="noopener">Abrir reportaje completo</a>
+            </div>
+
+            <ul class="meta-list" style="margin-top: 14px;">
+              <li><strong>Tipo de contenido:</strong> Reportaje investigativo</li>
+              <li><strong>Duración:</strong> Análisis completo de la problemática</li>
+              <li><strong>Enfoque:</strong> Impacto real en universitarios</li>
+              <li><strong>Objetivo:</strong> Generar conciencia sobre uso responsable</li>
             </ul>
 
             <div class="note" style="margin-top:16px;">
-              Conclusión: el uso responsable de las redes sociales es clave para aprovechar sus beneficios sin afectar
-              el bienestar personal.
+              Enlace del reportaje: https://youtu.be/0s-UodvY6yw
             </div>
           </div>
+
+          <div class="image-box">
+            <div class="video-frame">
+              <img src="https://i.ytimg.com/vi/0s-UodvY6yw/hqdefault.jpg" alt="Miniatura del reportaje sobre universitarios y redes sociales"
+                onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/0s-UodvY6yw/mqdefault.jpg';" />
+              <div class="video-overlay">
+                <div class="small">Reportaje investigativo</div>
+                <h3>¿Éxito o adicción?</h3>
+                <p>Descubre la realidad detrás de las redes sociales en universitarios.</p>
+                <a class="play-pill" href="https://youtu.be/0s-UodvY6yw" target="_blank" rel="noopener">
+                  <span class="play"><span class="triangle"></span></span>
+                  Ver reportaje
+                </a>
+              </div>
+            </div>
+            <div style="margin-top: 24px; border-top: 2px solid var(--line); padding-top: 24px;">
+          <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 20px;">
+            <div class="info-chip" style="background: linear-gradient(135deg, #fef3c7, #fef0eb); border-color: #f59e0b;">
+              <div class="label" style="color: #d97706;">Dato real</div>
+              <div class="value" style="color: var(--text); font-size: 1.1rem;">76%</div>
+              <p style="font-size: 0.85rem; color: var(--muted); margin: 4px 0 0 0;">de universitarios usa redes casi todos los días.</p>
+            </div>
+            <div class="info-chip" style="background: linear-gradient(135deg, #dbeafe, #ede9fe); border-color: #3b82f6;">
+              <div class="label" style="color: #1d4ed8;">Observación</div>
+              <div class="value" style="color: var(--text); font-size: 1.1rem;">4.5 horas</div>
+              <p style="font-size: 0.85rem; color: var(--muted); margin: 4px 0 0 0;">es el tiempo promedio diario que pasan en redes.</p>
+            </div>
+            <div class="info-chip" style="background: linear-gradient(135deg, #fecaca, #fce7f3); border-color: #ef4444;">
+              <div class="label" style="color: #991b1b;">Riesgo</div>
+              <div class="value" style="color: var(--text); font-size: 0.95rem;">Estrés y comparación</div>
+              <p style="font-size: 0.85rem; color: var(--muted); margin: 4px 0 0 0;">usar redes sin pausa puede afectar el ánimo.</p>
+            </div>
+            <div class="info-chip" style="background: linear-gradient(135deg, #d1fae5, #dcfce7); border-color: #10b981;">
+              <div class="label" style="color: #065f46;">Oportunidad</div>
+              <div class="value" style="color: var(--text); font-size: 0.95rem;">Contactos útiles</div>
+              <p style="font-size: 0.85rem; color: var(--muted); margin: 4px 0 0 0;">las redes también sirven para encontrar apoyo académico.</p>
+            </div>
+          </div>
+          </div>
+          
         </div>
 
-
+       
       </section>
 
     </div>
@@ -767,6 +984,81 @@
   <footer>
     Blog académico elaborado para la Evaluación de Sesión 08 – Unidad 2.
   </footer>
+
+  <script>
+    // Interactividad mejorada
+    document.addEventListener('DOMContentLoaded', function() {
+      // Efecto de scroll suave para navegación
+      const navLinks = document.querySelectorAll('a[href^="#"]');
+      navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          if (href !== '#') {
+            const target = document.querySelector(href);
+            if (target) {
+              e.preventDefault();
+              target.scrollIntoView({ behavior: 'smooth' });
+              // Agregar clase activa al link
+              navLinks.forEach(l => l.style.opacity = '0.6');
+              this.style.opacity = '1';
+            }
+          }
+        });
+      });
+
+      // Animación al pasar mouse sobre videos
+      const videoFrames = document.querySelectorAll('.video-frame');
+      videoFrames.forEach(frame => {
+        frame.addEventListener('mouseenter', function() {
+          this.style.transform = 'scale(1.02) rotateY(2deg)';
+        });
+        frame.addEventListener('mouseleave', function() {
+          this.style.transform = 'scale(1) rotateY(0deg)';
+        });
+      });
+
+      // Interactividad mejorada para chips de información
+      const infoChips = document.querySelectorAll('.info-chip');
+      infoChips.forEach((chip, index) => {
+        chip.style.opacity = '0';
+        chip.style.animation = `slideInUp 0.6s ease-out ${0.1 * (index + 1)}s forwards`;
+        chip.addEventListener('click', function() {
+          this.style.transform = 'scale(0.95)';
+          setTimeout(() => {
+            this.style.transform = '';
+          }, 100);
+        });
+      });
+
+      // Contador de secciones visitadas
+      const sections = document.querySelectorAll('section.card');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.animation = 'slideInUp 0.6s ease-out';
+            entry.target.style.opacity = '1';
+          }
+        });
+      }, { threshold: 0.1 });
+
+      sections.forEach(section => {
+        section.style.opacity = '0';
+        observer.observe(section);
+      });
+
+      // Interactividad para cajas de reflexión
+      const reflexionBoxes = document.querySelectorAll('[style*="border-left: 4px solid"]');
+      reflexionBoxes.forEach(box => {
+        box.style.cursor = 'pointer';
+        box.addEventListener('click', function() {
+          this.style.opacity = '0.8';
+          setTimeout(() => {
+            this.style.opacity = '1';
+          }, 200);
+        });
+      });
+    });
+  </script>
 </body>
 
 </html>
